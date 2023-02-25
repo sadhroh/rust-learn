@@ -104,41 +104,165 @@ use std::cmp::Ordering;
 // }
 
 // loop
+// fn main(){
+//     let mut a = 1;
+//     let arr = [1,2,3,4,5];
+
+//     // iterate infinitely
+//     loop{
+//         // skip even values
+//         if a % 2 == 0{
+//             a += 1;
+//             continue;
+//         }
+//         // stop when a exceeds 10
+//         if a > 10{
+//             break;
+//         }
+//         // print the value
+//         println!("{}",a);
+//         // increment value to next
+//         a += 1;
+//     }
+
+//     // while loops
+//     println!("While loops");
+//     let mut i = 0;
+//     while i < arr.len(){
+//         println!("{}", arr[i]);
+//         i+=1;
+//     }
+
+//     // for loops
+//     println!("for loops");
+//     for val in arr.iter(){
+//         println!("{}", val);
+//     }
+//     for i in 1..10{
+//         println!("Num:{}", i);
+//     }
+// }
+
+// tuples
+// fn main(){
+//     let my_tup = (47, "John", 10_000);
+
+//     println!("Name: {}", my_tup.1);
+
+//     let (v1, v2, v3) = my_tup;
+//     println!("Age: {}", v1);
+// }
+
+// strings
+// fn main(){
+//     // growable string
+//     let mut st1 = String::new();
+
+//     // push back a character
+//     st1.push('A');
+//     // push back a string
+//     st1.push_str(" word");
+
+//     // iterate over words
+//     for word in st1.split_whitespace(){
+//         println!("{}", word);
+//     }
+
+//     // replace strings
+//     let st2 = st1.replace("A", "Another");
+//     println!("{}", st2);
+
+//     // creating a String with value
+//     let st3 = String::from("x r h t k k a m c");
+
+//     // convert to vector of characters
+//     let mut v1: Vec<char> = st3.chars().collect();
+
+//     // sort
+//     v1.sort();
+//     // remove duplicates
+//     v1.dedup();
+
+//     println!("Printing processed characters");
+//     // iterate through the haracters
+//     for char in v1{
+//         println!("{}", char);
+//     }
+
+//     let st4 = "Random string";
+    
+//     // heap allocated string
+//     let mut st5 = st4.to_string();
+//     println!("Heap allocated string: {}", st5);
+
+//     // string to array of bytes
+//     let byte_arr = st5.as_bytes();
+//     // slice of string
+//     let st6 = &st5[0..6]; // 0 to 5 
+
+//     println!("String length: {}", st6.len());
+
+//     // delete values in a mutable string
+//     st5.clear();
+//     println!("After cearing: {}", st5);
+
+//     // combine strings
+//     let st6 = String::from("New String");
+//     let st7 = String::from(" with words");
+//     // gets reference to st7 but not st6, meaning that st6 is no longer available and exists within st8
+//     let st8 = st6 + &st7;
+//     // println!("Combined string: {} + {} --> {}", st6, st7, st8);
+//     println!("Combined string: {}", st8);
+
+//     // prints unicode characters
+//     for char in st8.bytes(){
+//         println!("{}", char);
+//     }
+// }
+
+// casting
+// fn main(){
+//     let int1_u8: u8 = 5;
+//     let int2_u8: u8 = 9;
+//     let int3_u32: u32 = (int1_u8 as u32) + (int2_u8 as u32);
+
+//     println!("Casted sum: {}", int3_u32);
+// }
+
+// enumerated types
 fn main(){
-    let mut a = 1;
-    let arr = [1,2,3,4,5];
+    // allows custom data types having limited number of values
+    enum Day {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday
+    }
 
-    // iterate infinitely
-    loop{
-        // skip even values
-        if a % 2 == 0{
-            a += 1;
-            continue;
+    // functions can be defined for the type
+    impl Day {
+        fn is_weekend(&self) -> bool{
+            match self {
+                Day::Saturday | Day::Sunday => true,
+                _ => false
+            }
         }
-        // stop when a exceeds 10
-        if a > 10{
-            break;
-        }
-        // print the value
-        println!("{}",a);
-        // increment value to next
-        a += 1;
     }
 
-    // while loops
-    println!("While loops");
-    let mut i = 0;
-    while i < arr.len(){
-        println!("{}", arr[i]);
-        i+=1;
+    let today = Day::Monday;
+
+    match today {
+        Day::Monday => println!("Monday"),
+        Day::Tuesday => println!("Tuesday"),
+        Day::Wednesday => println!("Wednesday"),
+        Day::Thursday => println!("Thursday"),
+        Day::Friday => println!("Friday"),
+        Day::Saturday => println!("Saturday"),
+        Day::Sunday => println!("Sunday"),
     }
 
-    // for loops
-    println!("for loops");
-    for val in arr.iter(){
-        println!("{}", val);
-    }
-    for i in 1..10{
-        println!("Num: {}", i);
-    }
+    println!("Weekend tooday? {}", today.is_weekend());
 }
