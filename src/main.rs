@@ -378,6 +378,27 @@ fn change_str(x: &mut String){
 }
 
 // hash maps
+use std::collections::HashMap; // need to use this
 fn main() {
+    let mut heroes = HashMap::new();
+    // insert elements
+    heroes.insert("Superman", "Clark Kent");
+    heroes.insert("Batman", "Bruce Wayne");
     
+    // iterate over the map
+    for (k, v) in heroes.iter(){
+        println!("FOr key:{} value:{}", k, v);
+    }
+    // print the length
+    println!("Length:{}", heroes.len());
+    // check if key exists
+    if heroes.contains_key(&"Batman"){
+        // get the value for a key
+        let b = heroes.get(&"Batman");
+        match b {
+            // if there is some value
+            Some(x) => println!("Found with value batman ==> {}", x),
+            None => println!("No value found"),
+        }
+    }
 }
