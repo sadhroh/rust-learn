@@ -297,21 +297,21 @@ use std::cmp::Ordering;
 // }
 
 // functions
-fn main(){
-    say_hello();
+// fn main(){
+//     say_hello();
 
-    sum(5, 10);
+//     sum(5, 10);
     
-    println!("{}", get_sum(2, 4));
+//     println!("{}", get_sum(2, 4));
     
-    println!("{}", get_back_sum(3, 6));
+//     println!("{}", get_back_sum(3, 6));
 
-    let (sum, diff, prod) = get_sum_diff(6, 8);
-    println!("Sum: {}, Diff: {}, Prod: {}", sum, diff, prod);
+//     let (sum, diff, prod) = get_sum_diff(6, 8);
+//     println!("Sum: {}, Diff: {}, Prod: {}", sum, diff, prod);
 
-    let list = vec![1,2,3,4,5];
-    println!("Sum of list: {}", sum_list(&list));
-}
+//     let list = vec![1,2,3,4,5];
+//     println!("Sum of list: {}", sum_list(&list));
+// }
 fn say_hello(){
     println!("Hello");
 }
@@ -335,4 +335,49 @@ fn sum_list(list: &[i32]) -> i32{
         sum += i;
     }
     return sum
+}
+
+// generics
+// fn main(){
+//     println!("89 + 23 = {}", add(89, 23));
+//     println!("4.5 + 2.3 = {}", add(4.5, 2.3));
+// }
+use std::ops::Add; // use the add trait
+// T is a placeholder for any type having the add trait
+fn add<T:Add<Output = T>>(x:T, y: T) -> T{
+    return x + y;
+}
+
+// ownership
+// fn main(){
+//      let str1 = String::from("World");
+//      let str2 = str1; // str1 now moved to str2
+//     //  println!("{}", str1); // str1 doesn't exist anymore
+//     let str3 = str2.clone();
+//     println!("{}", str2); // works as 2 copies are created
+    
+//     print_str(str2);
+//     // println!("{}", str2); // now doesn't work as str2 moved to function
+//     let str4 = print_return_str(str3);
+//     // println!("{}", str3); // now doesn't work as str3 moved to function
+//     let mut str5 = String::from("Hello");
+//     change_str(&mut str5);
+//     println!("{}", str5); // works as reference is passed with mutable
+// }
+fn print_str(x: String){
+    println!("Inside function:{}", x);
+}
+fn print_return_str(x: String) -> String{
+    println!("Inside function:{}", x);
+    x
+}
+fn change_str(x: &mut String){
+    // only 1 mutable version can be created inside of a function
+    x.push_str("added string");
+    println!("Inside function:{}", x);
+}
+
+// hash maps
+fn main() {
+    
 }
